@@ -7,7 +7,8 @@ describe('cn utility', () => {
   })
 
   it('handles conditional classes', () => {
-    expect(cn('foo', false && 'bar', 'baz')).toBe('foo baz')
+    const isActive = false
+    expect(cn('foo', isActive && 'bar', 'baz')).toBe('foo baz')
   })
 
   it('merges tailwind classes correctly', () => {
@@ -26,3 +27,7 @@ describe('cn utility', () => {
     expect(cn(['foo', 'bar'])).toBe('foo bar')
   })
 })
+
+if (process.env["BROWSER"]) {
+  // ...existing code...
+}
