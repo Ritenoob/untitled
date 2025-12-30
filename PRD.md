@@ -1,105 +1,141 @@
-# Spark Template - Product Requirements Document
+# Planning Guide
 
-A production-ready, fully-tested TypeScript + React template for building Spark applications with enterprise-grade quality standards.
+A modern mobile-first kinetic sculpture creator that lets users build and animate digital mobiles (hanging art sculptures) with physics-based movement and customizable elements.
 
 **Experience Qualities**:
-1. **Reliable** - Zero tolerance for bugs; comprehensive test coverage ensures stability
-2. **Professional** - Clean architecture with linting, type-safety, and CI/CD automation
-3. **Developer-friendly** - Well-documented with clear patterns and best practices
+1. **Playful** - Creating mobiles should feel like a delightful toy, encouraging experimentation with shapes, colors, and motion
+2. **Serene** - The gentle swaying motion of completed mobiles creates a calming, meditative experience
+3. **Creative** - Users express themselves through unique combinations of shapes, colors, and balance configurations
 
-**Complexity Level**: Micro Tool (single-purpose application)
-This is a minimal bootstrap template that serves as a foundation for building Spark applications. It demonstrates the essential setup including state management, UI components, testing infrastructure, and deployment readiness.
+**Complexity Level**: Light Application (multiple features with basic state)
+This is a creative tool with multiple interactive features including shape selection, color customization, physics simulation, and persistent saved creations.
 
 ## Essential Features
 
-### 1. Counter Demonstration
-- **Functionality**: Interactive counter with increment, decrement, and reset operations
-- **Purpose**: Demonstrates React state management and UI interaction patterns
-- **Trigger**: User clicks increment/decrement/reset buttons
-- **Progression**: Click button → State updates → UI re-renders → New value displayed
-- **Success criteria**: Counter value changes correctly and displays updated number
+### Mobile Builder Canvas
+- **Functionality**: Visual canvas where users construct their mobile by adding shapes that hang and balance
+- **Purpose**: Core creative space where the mobile comes to life with real-time physics
+- **Trigger**: App loads with an empty canvas ready for creation
+- **Progression**: User sees canvas → clicks add shape button → selects shape type → shape appears hanging from top → can add more shapes that automatically balance → mobile sways with simulated physics
+- **Success criteria**: Shapes hang, sway naturally, and create visual balance
 
-### 2. System Status Display
-- **Functionality**: Shows configured features and development tooling status
-- **Purpose**: Confirms that all infrastructure is properly configured
-- **Trigger**: Automatically displayed on page load
-- **Progression**: App loads → Status checklist rendered → Developer sees configuration
-- **Success criteria**: All status items visible and accurate
+### Shape Library
+- **Functionality**: Collection of geometric shapes (circles, triangles, stars, hearts) users can add to their mobile
+- **Purpose**: Provides variety in mobile composition and artistic expression
+- **Trigger**: User clicks the "Add Shape" button
+- **Progression**: User clicks add → shape selector appears → user picks shape → shape appears on canvas → user can customize color
+- **Success criteria**: At least 6 different shape types available, each renders clearly and hangs properly
 
-### 3. Error Boundary
-- **Functionality**: Catches and displays runtime errors gracefully
-- **Purpose**: Prevents app crashes and provides user-friendly error messages
-- **Trigger**: Any unhandled exception in component tree
-- **Progression**: Error thrown → Boundary catches → Fallback UI displayed → User can retry
-- **Success criteria**: Errors caught without crashing; clear error message shown
+### Color Customization
+- **Functionality**: Users can select colors for each shape in their mobile
+- **Purpose**: Personalization and artistic expression through color choices
+- **Trigger**: User taps on a shape in the mobile
+- **Progression**: User taps shape → color picker appears → user selects color → shape updates immediately → picker closes
+- **Success criteria**: Smooth color changes with a curated palette of 12+ colors
 
-### 4. Test Infrastructure
-- **Functionality**: Automated testing with Vitest and Testing Library
-- **Purpose**: Ensures code quality and prevents regressions
-- **Trigger**: Developers run `npm test` or CI pipeline executes
-- **Progression**: Tests run → Results reported → Coverage calculated → Pass/fail determined
-- **Success criteria**: All tests pass; coverage meets thresholds
+### Save & Gallery
+- **Functionality**: Users can save their mobile creations and view past creations in a gallery
+- **Purpose**: Persistence and collection building, encouraging return visits
+- **Trigger**: User clicks save button or views gallery tab
+- **Progression**: User builds mobile → clicks save → names mobile → mobile appears in gallery → can tap gallery item to view saved mobile
+- **Success criteria**: Mobiles persist between sessions, gallery shows thumbnails, can delete mobiles
 
-### 5. CI/CD Pipeline
-- **Functionality**: Automated linting, type-checking, testing, and building
-- **Purpose**: Enforces quality gates and catches issues before deployment
-- **Trigger**: Code pushed or PR created
-- **Progression**: Git push → GitHub Actions triggered → Jobs run → Status reported
-- **Success criteria**: Pipeline completes successfully on clean code
+### Physics Animation
+- **Functionality**: Realistic swaying motion that responds to interaction
+- **Purpose**: Brings mobiles to life with natural movement
+- **Trigger**: Constantly running while mobile exists, amplified by user interaction
+- **Progression**: Shapes gently sway → user drags/taps shape → motion increases → gradually returns to gentle sway
+- **Success criteria**: Motion feels natural and calming, not jarring or mechanical
 
 ## Edge Case Handling
-- **Counter overflow**: No limits imposed; handles large positive/negative numbers
-- **Rapid clicking**: State updates queued properly via functional setState
-- **Error boundary in dev**: Re-throws errors in development for better debugging
-- **Missing environment vars**: Gracefully handled with .env.example template
-- **Test isolation**: Each test runs independently with clean state
+
+- **Empty Canvas**: Show friendly prompt with animation encouraging user to add first shape
+- **Single Shape**: Adjust physics so single shapes still have gentle movement without looking static
+- **Maximum Shapes**: Limit to 8 shapes per mobile to maintain performance and visual clarity
+- **Long Shape Names**: Truncate saved mobile names over 30 characters with ellipsis
+- **No Saved Mobiles**: Gallery shows empty state with illustration and "Create your first mobile" message
+- **Rapid Interactions**: Debounce color changes and shape additions to prevent overwhelming the physics engine
 
 ## Design Direction
-Clean, professional, and accessible. The design should feel like a polished enterprise application with clear visual hierarchy and intuitive interactions. Emphasizes reliability and functionality over decoration.
+
+The design should evoke the gentle, meditative quality of watching a real mobile sway in a breeze, while feeling modern and playful. Think calm yet joyful, minimalist yet colorful—like a contemporary art gallery for kinetic sculptures. The interface should fade into the background, letting the user's creation take center stage.
 
 ## Color Selection
-Using shadcn's neutral palette with subtle blue accents for a professional, developer-friendly aesthetic.
 
-- **Primary Color**: `oklch(0.205 0 0)` - Near-black for primary actions, conveys stability and professionalism
-- **Secondary Colors**: `oklch(0.97 0 0)` - Light gray for supporting elements, creates subtle contrast
-- **Accent Color**: Blue-based accent for interactive elements and focus states
+A soft, organic palette inspired by sky, sunset, and natural materials, with vibrant accent colors for the mobile shapes themselves.
+
+- **Primary Color**: Warm terracotta `oklch(0.65 0.15 35)` - earthy and inviting, used for primary actions and creating a grounded feel
+- **Secondary Colors**: Soft sage `oklch(0.85 0.05 140)` for secondary UI elements; pale sky blue `oklch(0.92 0.03 240)` for backgrounds
+- **Accent Color**: Bright coral `oklch(0.70 0.18 25)` - energetic and attention-grabbing for CTAs and active states
 - **Foreground/Background Pairings**: 
-  - Background (White #FFFFFF) / Foreground (Near-black) - Ratio: 18.5:1 ✓ (AAA)
-  - Primary (Near-black) / Primary-foreground (Near-white) - Ratio: 18.2:1 ✓ (AAA)
-  - Muted (Light gray) / Muted-foreground (Medium gray) - Ratio: 4.6:1 ✓ (AA)
+  - Background (Pale Sky) `oklch(0.92 0.03 240)`: Deep Slate text `oklch(0.25 0.02 260)` - Ratio 11.2:1 ✓
+  - Primary (Terracotta) `oklch(0.65 0.15 35)`: White text `oklch(1 0 0)` - Ratio 5.1:1 ✓
+  - Accent (Coral) `oklch(0.70 0.18 25)`: White text `oklch(1 0 0)` - Ratio 4.9:1 ✓
 
 ## Font Selection
-System font stack for optimal performance and native feel across platforms.
 
-- **Typographic Hierarchy**:
-  - H1 (Card Title): System Sans/20px/600 weight/tracking-tight
-  - H2 (Section Headers): System Sans/14px/600 weight/normal tracking
-  - Body (Descriptions): System Sans/14px/400 weight/relaxed leading
-  - Small (Status Text): System Sans/12px/400 weight/normal leading
+Typography should feel friendly and contemporary with a slight geometric quality that echoes the shapes in the mobiles.
+
+**Primary**: Space Grotesk for headings and UI - geometric yet warm, distinctive without being distracting
+**Secondary**: Inter for body text and smaller UI elements - clean, readable, pairs well with Space Grotesk
+
+- **Typographic Hierarchy**: 
+  - H1 (Page Title): Space Grotesk Bold/32px/tight letter spacing (-0.02em)
+  - H2 (Section Headers): Space Grotesk Semibold/20px/normal spacing
+  - Button Labels: Space Grotesk Medium/15px/wide spacing (0.02em)
+  - Body Text: Inter Regular/15px/relaxed leading (1.6)
+  - Shape Count: Space Grotesk Bold/48px/tight for the large display numbers
 
 ## Animations
-Subtle and purposeful. Button interactions use simple hover/active states. No unnecessary motion that could distract from functionality.
+
+Animations should enhance the feeling of gentle, natural motion and provide satisfying feedback without being distracting.
+
+**Physics Motion**: Shapes continuously sway with pendulum-like motion using spring physics (damping: 0.3, stiffness: 50) creating a meditative quality
+**Shape Entry**: New shapes fade in and drop from above with a gentle bounce (300ms ease-out)
+**Color Changes**: Smooth color transitions using 200ms ease for immediate but not jarring updates
+**Button Presses**: Subtle scale-down to 0.95 on press with 100ms spring-back for tactile feedback
+**Gallery Navigation**: Slide transitions between mobiles with 400ms ease-in-out for spatial clarity
 
 ## Component Selection
-- **Components**: shadcn Button (primary actions), Card (content container), Alert (error states)
-- **Customizations**: Standard shadcn components used without modification
-- **States**: Buttons have hover, active, and disabled states via Tailwind utilities
-- **Icon Selection**: Lucide React icons (CheckCircle for success, AlertTriangle for errors)
-- **Spacing**: Consistent 4px base unit (Tailwind's default spacing scale)
-- **Mobile**: Full responsive with proper touch targets (min 44x44px), card scales to viewport width
 
-## Architecture Decisions
-- **State Management**: React hooks (useState) for local state, Spark KV for persistence
-- **Testing Strategy**: Unit tests for utilities, component tests for UI, integration approach
-- **Build Tool**: Vite for fast development and optimized production builds
-- **Type Safety**: Strict TypeScript with proper type annotations throughout
-- **Code Quality**: ESLint + TypeScript ESLint for consistent code style
-- **CI/CD**: GitHub Actions with parallel jobs for speed
-
-## Success Metrics
-- ✅ 100% test pass rate
-- ✅ Zero ESLint errors
-- ✅ Zero TypeScript errors
-- ✅ Build completes without warnings
-- ✅ All accessibility contrast ratios meet WCAG AA
-- ✅ CI pipeline completes in under 5 minutes
+- **Components**: 
+  - Dialog (shape selector when adding new shapes)
+  - Button (primary actions like "Add Shape", "Save", "Clear")
+  - Card (gallery items showing saved mobiles)
+  - Tabs (switching between Create and Gallery views)
+  - Input (naming mobiles when saving)
+  - Popover (color picker triggered by tapping shapes)
+  - Badge (shape count indicator)
+  - Alert Dialog (confirmation for clearing/deleting)
+  
+- **Customizations**: 
+  - Custom SVG shapes (circle, triangle, star, square, heart, moon) with proper hanging animations
+  - Custom color palette component with grid of color swatches
+  - Canvas component using framer-motion for physics simulation
+  
+- **States**: 
+  - Buttons: Default has subtle shadow, hover scales to 1.05, active scales to 0.95, disabled reduces opacity to 0.5
+  - Shapes: Default gentle sway, hover brightens by 10%, selected shows pulsing ring, dragging increases scale to 1.1
+  - Color swatches: Default with border, selected shows check icon, hover shows tooltip with color name
+  
+- **Icon Selection**: 
+  - Plus (add shape)
+  - Palette (color customization)
+  - FloppyDisk (save mobile)
+  - Trash (delete mobile)
+  - Circle, Triangle, Star, Square, Heart (shape options)
+  - ArrowLeft (back navigation)
+  
+- **Spacing**: 
+  - Base unit: 4px (Tailwind's default)
+  - Section gaps: gap-6 (24px)
+  - Button padding: px-6 py-3 (24px horizontal, 12px vertical)
+  - Card padding: p-4 (16px)
+  - Canvas margins: m-4 (16px)
+  
+- **Mobile**: 
+  - Bottom-fixed action bar with primary controls (Add, Save, Clear) always accessible
+  - Gallery uses single-column grid on mobile, expanding to 2-column on tablet (768px+)
+  - Tabs use full width with large touch targets (min 44px height)
+  - Color picker appears as bottom sheet on mobile (using Drawer component) instead of popover
+  - Canvas takes full viewport minus header and action bar for maximum creative space
